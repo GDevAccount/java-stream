@@ -27,10 +27,12 @@ List<Customer> customersWithMoreThan100Points = customers
 
 Learn to find min and max, sum, count and average
 
-Those functions accepts a Comparator in parameter
 
 ```
 Optional<T> min(Comparator<? super T> comparator)
+Optional<T> max(Comparator<? super T> comparator)
+long count()
+OptionalDouble average()
 ```
 
 Example:
@@ -41,3 +43,21 @@ Employee minObject = employees.stream().min(comparator).get();
 ```
 
 [Link to more statistics examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Statistics.java)
+
+----
+## Distinct
+
+The Stream API provides the distinct() method that returns different elements of a list based on the equals() method of the Object class.
+
+```
+Stream<T> distinct();
+```
+
+Example:
+
+```
+List<String> distinctElements = list.stream().distinct().collect(Collectors.toList());
+```
+
+
+
