@@ -2,6 +2,10 @@
 
 Stream is a new abstract layer introduced in Java 8. Using stream, you can process data in a declarative way similar to SQL statements.
 
+![Schema](https://github.com/GDevAccount/java-stream/blob/master/stream.png)
+
+![Schema2](https://github.com/GDevAccount/java-stream/blob/master/stream2.png)
+
 ----
 ## Filter
 
@@ -59,5 +63,22 @@ Example:
 List<String> distinctElements = list.stream().distinct().collect(Collectors.toList());
 ```
 
+[Link to more Distinct examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Distinct.java)
 
+----
+## Mapping
+
+stream().map() lets you convert an object to something else.
+
+```
+Stream<T> distinct();
+```
+
+Example:
+
+```
+List<String> staffNames = staff.stream().map(x -> x.getName()).collect(Collectors.toList());
+```
+
+[Link to more Distinct examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Distinct.java)
 
