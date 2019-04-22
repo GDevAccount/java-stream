@@ -2,9 +2,9 @@
 
 Stream is a new abstract layer introduced in Java 8. Using stream, you can process data in a declarative way similar to SQL statements.
 
-![Schema](https://github.com/GDevAccount/java-stream/blob/master/stream.png)
+<a href="http://fvcproductions.com"><img src="https://github.com/GDevAccount/java-stream/blob/master/stream.png" title="Schema 1" alt="Schema 1"></a>
 
-![Schema2](https://github.com/GDevAccount/java-stream/blob/master/stream2.png)
+<a href="http://fvcproductions.com"><img src="https://github.com/GDevAccount/java-stream/blob/master/stream2.png" title="Schema 2" alt="Schema 2"></a>
 
 ----
 ## Filter
