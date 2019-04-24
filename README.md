@@ -127,19 +127,18 @@ List<String> staffNames = staff.stream().map(x -> x.getName()).collect(Collector
 [Link to more Mapping examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Mapping.java)
 
 ----
-## Mapping
+## Group By
 
-stream().map() lets you convert an object to something else.
+The static factory methods Collectors.groupingBy() and Collectors.groupingByConcurrent() provide us with functionality similar to the ‘GROUP BY’ clause in the SQL language. They are used for grouping objects by some property and storing results in a Map instance.
 
 ```
-<R> Stream<R> map(Function<? super T,? extends R> mapper)
-DoubleStream mapToDouble(ToDoubleFunction<? super T> mapper)
+static <T,K> Collector<T,?,Map<K,List<T>>> groupingBy(Function<? super T,? extends K> classifier)
 ```
 
 Example:
 
 ```
-List<String> staffNames = staff.stream().map(x -> x.getName()).collect(Collectors.toList());
+cars.stream().collect(Collectors.groupingBy(Car::getMake));
 ```
 
-[Link to more Distinct examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Mapping.java)
+[Link to more Group By examples](./src/test/java/examples/Mapping.java)
