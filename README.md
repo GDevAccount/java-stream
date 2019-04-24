@@ -4,8 +4,8 @@ Stream is a new abstract layer introduced in Java 8. Using stream, you can proce
 
 First, we obtain a stream from the list of transactions (the data) using the stream() method available on List. Next, several operations (filter, sorted, map, collect) are chained together to form a pipeline, which can be seen as forming a query on the data.
 
-
-<img src="https://github.com/GDevAccount/java-stream/blob/master/stream.png" title="Schema 1" alt="Schema 1">
+<img src="./stream2.png" title="Schema 2" alt="Schema 2">
+<img src="./stream.png" title="Schema 1" alt="Schema 1">
 
 ##### Predicate 
 
@@ -47,8 +47,6 @@ The implementation of the compare() method should return
 * zero, if the first argument is equal to the second, and
 * a positive integer, if the first argument is greater than the second.
 
-<a href="http://fvcproductions.com"><img src="https://github.com/GDevAccount/java-stream/blob/master/stream2.png" title="Schema 2" alt="Schema 2"></a>
-
 ----
 ## Filter
 
@@ -67,7 +65,7 @@ List<Customer> customersWithMoreThan100Points = customers
   .collect(Collectors.toList());
 ```
 
-[Link to more filter examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Filter.java)
+[Link to more filter examples](./src/test/java/examples/Filter.java)
 
 ----
 ## Statistics
@@ -89,7 +87,7 @@ Comparator<Employee> comparator = Comparator.comparing( Employee::getAge );
 Employee minObject = employees.stream().min(comparator).get();
 ```
 
-[Link to more statistics examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Statistics.java)
+[Link to more statistics examples](./src/test/java/examples/Statistics.java)
 
 ----
 ## Distinct
@@ -106,7 +104,7 @@ Example:
 List<String> distinctElements = list.stream().distinct().collect(Collectors.toList());
 ```
 
-[Link to more Distinct examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Distinct.java)
+[Link to more Distinct examples](./src/test/java/examples/Distinct.java)
 
 ----
 ## Mapping
@@ -124,7 +122,7 @@ Example:
 List<String> staffNames = staff.stream().map(x -> x.getName()).collect(Collectors.toList());
 ```
 
-[Link to more Mapping examples](https://github.com/GDevAccount/java-stream/blob/master/src/test/java/examples/Mapping.java)
+[Link to more Mapping examples](./src/test/java/examples/Mapping.java)
 
 ----
 ## Group By
@@ -141,4 +139,70 @@ Example:
 cars.stream().collect(Collectors.groupingBy(Car::getMake));
 ```
 
-[Link to more Group By examples](./src/test/java/examples/Mapping.java)
+[Link to more Group By examples](./src/test/java/examples/GroupBy.java)
+
+----
+## Reduce
+
+Reduction stream operations allow us to produce one single result from a sequence of elements, by applying repeatedly a combining operation to the elements in the sequence.
+
+```
+<U> U reduce(U identity, BiFunction<U, ? super T, U> accumulator, BinaryOperator<U> combiner);
+```
+
+* Identity – an element that is the initial value of the reduction operation and the default result if the stream is empty
+* Accumulator – a function that takes two parameters: a partial result of the reduction operation and the next element of the stream
+* Combiner – a function used to combine the partial result of the reduction operation when the reduction is parallelized, or when there’s a mismatch between the types of the accumulator arguments and the types of the accumulator implementation
+
+
+Example:
+
+```
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+int result = numbers.stream().reduce(0, (subtotal, element) -> subtotal + element);
+```
+
+[Link to more reduce examples](./src/test/java/examples/Reduce.java)
+
+----
+## Flatmap
+
+FlatMap as it can be guessed by its name, is the combination of a map and a flat operation
+FlatMap perform mapping each array not with stream but with the contents of that stream. All of the individual streams that would get generated while using map(Arrays::stream) get merged into a single stream.
+
+<img src="./flatmap.jpg" title="flatmap schema" alt="flatmap schema">
+
+```
+<R> Stream<R> flatMap(Function<? super T,? extends Stream<? extends R>> mapper)
+```
+
+Example:
+
+```
+// [[Mariam, Alex, Ismail],[John, Alesha, Andre], [Susy, Ali]]
+List<String> names = arrayListOfNames.stream().flatMap(List::stream).collect(Collectors.toList());
+```
+
+[Link to more flatmap examples](./src/test/java/examples/FlatMap.java)
+
+----
+## Sorted
+
+ We can sort the stream in natural ordering as well as ordering provided by Comparator.
+
+* sorted(): It sorts the elements of stream using natural ordering. The element class must implement Comparable interface. 
+
+* sorted(Comparator<? super T> comparator): Here we create an instance of Comparator using lambda expression. We can sort the stream elements in ascending and descending order
+
+```
+Stream<T> sorted()
+Stream<T> sorted(Comparator<? super T> comparator)
+```
+
+Example:
+
+```
+List<Person> sortedByAge = people.stream().sorted(Comparator.comparing(Person::getAge)).collect(Collectors.toList());
+```
+
+[Link to more sorted examples](./src/test/java/examples/Sorted.java)

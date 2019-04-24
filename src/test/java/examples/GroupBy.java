@@ -3,6 +3,7 @@ package examples;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.assertj.core.util.Lists;
@@ -34,5 +35,23 @@ public class GroupBy {
     counting.forEach((name, count) -> System.out.println(name + " > " + count));
   }
 
+  @Test
+  public void groupingByMultipleFieds() throws Exception {
+    List<Car> cars = MockData.getCars();
+    Map<String, Map<String, List<Car>>> result = cars.stream()
+        .collect(Collectors.groupingBy(Car::getMake, Collectors.groupingBy(Car::getModel)));
+
+    /*
+     * for (Map.Entry<String, Map<String, List<Car>>> making : result.entrySet()) {
+     *  System.out.println(making.getKey());
+     *  for (Entry<String, List<Car>> model : making.getValue().entrySet()) {
+     *   System.out.println("---" + model.getKey());
+     *   for (Car c : model.getValue()) {
+     *    System.out.println("----- Price:" + c.getPrice() + "- Year:" + c.getYear()); 
+     *   } 
+     *  } 
+     * }
+     */
+  }
 
 }

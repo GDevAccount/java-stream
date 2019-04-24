@@ -15,6 +15,5 @@ public class Reduce {
     int sum2 = Arrays.stream(integers).reduce(0, Integer::sum);
     System.out.println(sum2);
 
-
   }
 }

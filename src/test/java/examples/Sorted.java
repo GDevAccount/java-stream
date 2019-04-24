@@ -1,19 +1,13 @@
 package examples;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.junit.Test;
-import com.google.common.collect.ImmutableList;
 import beans.Person;
 import mockdata.MockData;
 
-public class Sort {
+public class Sorted {
 
   @Test
   public void exampleSorted() throws Exception {
@@ -25,7 +19,6 @@ public class Sort {
 
   @Test
   public void exampleSortedWithLambda() throws Exception {
-    System.out.println("Sorted with lambda :");
 
     Comparator<Person> nameAgeComparator = new Comparator<Person>() {
 

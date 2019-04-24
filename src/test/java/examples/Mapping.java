@@ -22,7 +22,22 @@ public class Mapping {
     assertThat(dtos).hasSize(1000);
 
   }
+  
+  @Test
+  public void functionMapping() throws Exception {
+    List<Person> people = MockData.getPeople();
 
+    List<String> names = people.stream().map(this::getName).collect(Collectors.toList());
+    
+    System.out.println(names.get(0));
+    assertThat(names).hasSize(1000);
+  }
+
+  public String getName(Person p) {
+    return p.getFirstName();
+  }
+  
+  
   @Test
   public void averageCarPrice() throws Exception {
     // calculate average of car prices
@@ -37,7 +52,7 @@ public class Mapping {
       return car.getModel();
     }).distinct().map(String::toUpperCase).collect(Collectors.toList());
 
-    models.forEach(System.out::println);
+    //models.forEach(System.out::println);
 
   }
 

@@ -36,7 +36,7 @@ public class FlatMap {
 
   @Test
   public void withFlatMap() throws Exception {
-    // [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
+    // [[Mariam, Alex, Ismail],[John, Alesha, Andre], [Susy, Ali]]
 
     List<String> names =
         arrayListOfNames.stream().flatMap(List::stream).collect(Collectors.toList());
